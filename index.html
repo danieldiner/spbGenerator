@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SPB Link Generator</title>
+
+    <link rel="stylesheet" type="text/css" href="./js/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./js/shop.css">
+    
+</head>
+<body id="debug">
+<div class="container">
+
+<h1 class="page-header">SPB Link Generator</h1>
+<div class="row">
+
+<form role="form" class="form-horizontal" name="adjustConfiguration">
+<div class="row">
+
+<div class="col-md-12">
+<div class="form-group">
+    <label for="cfgitem-itemName" class="col-sm-3 control-label">Base URL</label>
+    <div class="col-sm-7">
+        <input type="text" class="form-control" id="cfgitem-base" name="base" value="INSERTE-DIRECTORIO-DE-PAGOS">
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="cfgitem-itemDescription" class="col-sm-3 control-label">Amount to pay</label>
+    <div class="col-sm-7"> 
+        <input type="text" class="form-control" id="cfgitem-amount" name="amount" value="">
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="cfgitem-itemSku" class="col-sm-3 control-label">Identifier</label>
+    <div class="col-sm-7">
+        <input type="text" class="form-control" id="cfgitem-idItem" name="idItem" value="">
+    </div>
+</div>
+
+<div class="form-group pull-right">
+    <button class="btn btn-primary" onclick="generateUrl();return false;" >Generate URL</button>
+</div>
+<div class="form-group">
+    <button class="btn btn-primary" onclick="window.location.reload();" style="color: white">Clean form</button>
+</div>
+</form>
+
+<br><br>
+<h2>Final URL:</h2> <h3><span id="finalUrl"></span></h3>
+
+</div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/sample_shop.js"></script>
+
+<script> 
+
+function generateUrl() { 
+  var base = document.getElementById("cfgitem-base").value;
+  var tail = "";
+  var amount = document.getElementById("cfgitem-amount").value; 
+  var idItem = document.getElementById("cfgitem-idItem").value; 
+  
+    // Joining the strings together 
+    var encTail = btoa(tail.concat('amount=',amount,'&id=', idItem)); 
+    var finalUrl = base.concat('?',encTail);
+
+    document.getElementById("finalUrl").innerHTML = finalUrl;
+    console.log('Final url= ' + finalUrl);   
+} 
+
+</script> 
+
+</div></body></html>
